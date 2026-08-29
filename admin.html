@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Siddharth Shinde | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-logo">SS<span>.</span></div>
+
+                <div>
+                    <h2>Siddharth</h2>
+                    <p>Portfolio Admin</p>
+                </div>
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <button class="nav-item active" data-section="overview">
+                    <span>⌂</span>
+                    Overview
+                </button>
+
+                <button class="nav-item" data-section="profile">
+                    <span>◉</span>
+                    Profile
+                </button>
+
+                <button class="nav-item" data-section="experience">
+                    <span>💼</span>
+                    Experience
+                </button>
+
+                <button class="nav-item" data-section="skills">
+                    <span>✦</span>
+                    Skills
+                </button>
+
+                <button class="nav-item" data-section="projects">
+                    <span>▣</span>
+                    Projects
+                </button>
+
+                <button class="nav-item" data-section="certificates">
+                    <span>🏆</span>
+                    Certificates
+                </button>
+
+                <button class="nav-item" data-section="social">
+                    <span>↗</span>
+                    Social Links
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <a href="index.html" target="_blank">
+                    🌐 View Portfolio
+                </a>
+
+                <button id="logoutButton">
+                    ↪ Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div>
+                    <p class="top-label">ADMIN PANEL</p>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+                </div>
+
+
+                <div class="admin-user">
+
+                    <div class="avatar">
+                        SS
+                    </div>
+
+                    <div>
+                        <strong>Siddharth Shinde</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- ================= OVERVIEW ================= -->
+
+            <section id="overview" class="dashboard-section active-section">
+
+                <div class="welcome-card">
+
+                    <div>
+
+                        <p class="green-label">
+                            WELCOME BACK
+                        </p>
+
+                        <h2>
+                            Manage your portfolio.
+                        </h2>
+
+                        <p>
+                            Update your information,
+                            projects, experience and
+                            certificates from one place.
+                        </p>
+
+                    </div>
+
+                    <div class="welcome-icon">
+                        SS
+                    </div>
+
+                </div>
+
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span>01</span>
+                        <h3>Profile</h3>
+                        <p>Personal information</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>02</span>
+                        <h3>Experience</h3>
+                        <p>Work history</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>03</span>
+                        <h3>Projects</h3>
+                        <p>Portfolio projects</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>04</span>
+                        <h3>Certificates</h3>
+                        <p>Achievements</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= PROFILE ================= -->
+
+            <section id="profile" class="dashboard-section">
+
+                <div class="section-title">
+
+                    <p class="green-label">
+                        PROFILE
+                    </p>
+
+                    <h2>
+                        Personal Information
+                    </h2>
+
+                    <p>
+                        Update the information displayed
+                        on your portfolio.
+                    </p>
+
+                </div>
+
+
+                <form class="admin-form" id="profileForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Full Name</label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Siddharth Shinde">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Professional Title</label>
+
+                            <input
+                                type="text"
+                                id="professionalTitle"
+                                placeholder="Marketing • Sales • Digital • AI">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>About Me</label>
+
+                        <textarea
+                            id="aboutMe"
+                            rows="6"
+                            placeholder="Write something about yourself..."></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Profile Photo</label>
+
+                        <div class="upload-box">
+
+                            <input
+                                type="file"
+                                id="profilePhoto"
+                                accept="image/*">
+<img
+    id="profilePhotoPreview"
+    src=""
+    alt="Profile Preview"
+    style="display:none; width:120px; height:120px; object-fit:cover; border-radius:50%; margin-top:15px;">
+                            <span>
+                                📷 Choose Profile Photo
+                            </span>
+
+                            <small>
+                                JPG, PNG or WEBP
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="save-button">
+                        Save Profile
+                    </button>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ================= EXPERIENCE ================= -->
+
+            <section id="experience" class="dashboard-section">
+
+                <div class="section-title">
+
+                    <p class="green-label">
+                        EXPERIENCE
+                    </p>
+
+                    <h2>
+                        Work Experience
+                    </h2>
+
+                    <p>
+                        Add and manage your professional
+                        experience.
+                    </p>
+
+                </div>
+
+
+                <form class="admin-form" id="experienceForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Company</label>
+
+                            <input
+                                type="text"
+                                id="company"
+                                placeholder="Company name">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Position</label>
+
+                            <input
+                                type="text"
+                                id="position"
+                                placeholder="Your position">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Start Year</label>
+
+                            <input
+                                type="text"
+                                id="startYear"
+                                placeholder="2025">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>End Year</label>
+
+                            <input
+                                type="text"
+                                id="endYear"
+                                placeholder="Present">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Description</label>
+
+                        <textarea
+                            id="experienceDescription"
+                            rows="5"
+                            placeholder="Describe your work..."></textarea>
+
+                    </div>
+
+
+                    <button type="submit" class="save-button">
+                        Add Experience
+                    </button>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ================= SKILLS ================= -->
+
+            <section id="skills" class="dashboard-section">
+
+                <div class="section-title">
+
+                    <p class="green-label">
+                        SKILLS
+                    </p>
+
+                    <h2>
+                        My Skills
+                    </h2>
+
+                    <p>
+                        Add the skills you want to
+                        display.
+                    </p>
+
+                </div>
+
+
+                <form class="admin-form" id="skillsForm">
+
+                    <div class="form-group">
+
+                        <label>Skill Name</label>
+
+                        <input
+                            type="text"
+                            id="skillName"
+                            placeholder="Marketing">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Description</label>
+
+                        <textarea
+                            id="skillDescription"
+                            rows="4"
+                            placeholder="Short description..."></textarea>
+
+                    </div>
+
+
+                    <button type="submit" class="save-button">
+                        Add Skill
+                    </button>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ================= PROJECTS ================= -->
+
+            <section id="projects" class="dashboard-section">
+
+                <div class="section-title">
+
+                    <p class="green-label">
+                        PROJECTS
+                    </p>
+
+                    <h2>
+                        Portfolio Projects
+                    </h2>
+
+                    <p>
+                        Add your latest projects.
+                    </p>
+
+                </div>
+
+
+                <form class="admin-form" id="projectForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Project Name</label>
+
+                            <input
+                                type="text"
+                                id="projectName"
+                                placeholder="Project name">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Category</label>
+
+                            <input
+                                type="text"
+                                id="projectCategory"
+                                placeholder="Marketing / Digital / AI">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Description</label>
+
+                        <textarea
+                            id="projectDescription"
+                            rows="5"
+                            placeholder="Describe the project..."></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Project Link</label>
+
+                        <input
+                            type="url"
+                            id="projectLink"
+                            placeholder="https://">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Project Image</label>
+
+                        <div class="upload-box">
+
+                            <input
+                                type="file"
+                                id="projectImage"
+                                accept="image/*">
+
+                            <span>
+                                🖼️ Choose Project Image
+                            </span>
+
+                            <small>
+                                JPG, PNG or WEBP
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="save-button">
+                        Add Project
+                    </button>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ================= CERTIFICATES ================= -->
+
+            <section id="certificates" class="dashboard-section">
+
+                <div class="section-title">
+
+                    <p class="green-label">
+                        CERTIFICATES
+                    </p>
+
+                    <h2>
+                        My Certificates
+                    </h2>
+
+                    <p>
+                        Upload certificates and
+                        achievements.
+                    </p>
+
+                </div>
+
+
+                <form class="admin-form" id="certificateForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>Certificate Name</label>
+
+                            <input
+                                type="text"
+                                id="certificateName"
+                                placeholder="Certificate name">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Issuing Organization</label>
+
+                            <input
+                                type="text"
+                                id="certificateOrganization"
+                                placeholder="Organization">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Certificate File</label>
+
+                        <div class="upload-box">
+
+                            <input
+                                type="file"
+                                id="certificateFile"
+                                accept=".pdf,image/*">
+
+                            <span>
+                                🏆 Upload Certificate
+                            </span>
+
+                            <small>
+                                PDF, JPG or PNG
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="save-button">
+                        Upload Certificate
+                    </button>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ================= SOCIAL ================= -->
+
+            <section id="social" class="dashboard-section">
+
+                <div class="section-title">
+
+                    <p class="green-label">
+                        SOCIAL LINKS
+                    </p>
+
+                    <h2>
+                        Connect With Me
+                    </h2>
+
+                    <p>
+                        Add your social media and
+                        contact links.
+                    </p>
+
+                </div>
+
+
+                <form class="admin-form" id="socialForm">
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="siddharth@example.com">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>LinkedIn</label>
+
+                        <input
+                            type="url"
+                            id="linkedin"
+                            placeholder="https://linkedin.com/in/...">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Instagram</label>
+
+                        <input
+                            type="url"
+                            id="instagram"
+                            placeholder="https://instagram.com/...">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>GitHub</label>
+
+                        <input
+                            type="url"
+                            id="github"
+                            placeholder="https://github.com/...">
+
+                    </div>
+
+
+                    <button type="submit" class="save-button">
+                        Save Social Links
+                    </button>
+
+                </form>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="admin.js" type="module"></script>
+
+</body>
+
+</html>
