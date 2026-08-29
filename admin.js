@@ -92,24 +92,53 @@ navItems.forEach((item) => {
 // ================= PROFILE =================
 
 const profileForm = document.getElementById("profileForm");
+let uploadedPhotoUrl = "";
 const profilePhoto = document.getElementById("profilePhoto");
 
 if (profilePhoto) {
-    profilePhoto.addEventListener("change", () => {
+    profilePhoto.addEventListener("change", async () => {
 
         const file = profilePhoto.files[0];
 
-        if (file) {
-    console.log("Photo selected:", file.name);
+        if (!file) return;
 
-    const preview = document.getElementById("profilePhotoPreview");
+        // Preview
+        const preview = document.getElementById("profilePhotoPreview");
 
-    preview.src = URL.createObjectURL(file);
-    preview.style.display = "block";
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+
+        console.log("Photo selected:", file.name);
+
+        // Cloudinary upload
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "siddharth_portfolio_upload");
+
+        try {
+
+            const response = await fetch(
+                "https://api.cloudinary.com/v1_1/apvzcn4s/image/upload",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            const data = await response.json();
+
+            if (data.secure_url) {
+    uploadedPhotoUrl = data.secure_url;
+    console.log("Upload successful:", uploadedPhotoUrl);
 }
+
+        } catch (error) {
+            console.error("Cloudinary error:", error);
+        }
 
     });
 }
+
 if (profileForm) {
 
     profileForm.addEventListener("submit", async (event) => {
@@ -119,15 +148,18 @@ if (profileForm) {
         try {
 
             const name = document.getElementById("fullName").value;
-const title = document.getElementById("professionalTitle").value;
-const bio = document.getElementById("aboutMe").value;
+            const title = document.getElementById("professionalTitle").value;
+            const bio = document.getElementById("aboutMe").value;
+
+            const photoUrl =
+                document.getElementById("profilePhotoPreview").src;
 
             await setDoc(doc(db, "profile", "main"), {
 
                 name: name,
                 title: title,
-                bio: bio
-
+                bio: bio,
+                photoUrl: uploadedPhotoUrl
             });
 
             alert("Profile saved successfully! ✅");
@@ -136,24 +168,9 @@ const bio = document.getElementById("aboutMe").value;
 
             console.error(error);
 
-            alert("Profile save nahi hua. Firebase configuration check karo.");
+            alert("Profile save nahi hua.");
 
         }
-
-    });
-
-}
-
-
-// ================= LOGOUT =================
-
-const logoutButton = document.getElementById("logoutButton");
-
-if (logoutButton) {
-
-    logoutButton.addEventListener("click", () => {
-
-        window.location.href = "login.html";
 
     });
 
