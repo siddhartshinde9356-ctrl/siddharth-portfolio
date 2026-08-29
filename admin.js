@@ -3,7 +3,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebas
 import {
     getFirestore,
     doc,
-    setDoc
+    setDoc,
+    addDoc,
+    collection
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import {
@@ -169,6 +171,87 @@ if (profileForm) {
             console.error(error);
 
             alert("Profile save nahi hua.");
+
+        }
+
+    });
+
+}
+// ================= CERTIFICATE UPLOAD =================
+
+const certificateForm = document.getElementById("certificateForm");
+
+if (certificateForm) {
+
+    certificateForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const certificateName =
+            document.getElementById("certificateName").value.trim();
+
+        const certificateOrganization =
+            document.getElementById("certificateOrganization").value.trim();
+
+        const certificateFile =
+            document.getElementById("certificateFile").files[0];
+
+        if (!certificateName || !certificateOrganization || !certificateFile) {
+            alert("Please fill all certificate details and select a file.");
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append("file", certificateFile);
+        formData.append(
+            "upload_preset",
+            "siddharth_portfolio_upload"
+        );
+
+        try {
+
+            alert("Uploading certificate... ⏳");
+
+            const response = await fetch(
+                "https://api.cloudinary.com/v1_1/apvzcn4s/auto/upload",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            const data = await response.json();
+
+            if (!data.secure_url) {
+                console.error(data);
+                throw new Error("Cloudinary upload failed");
+            }
+
+            console.log(
+                "Certificate uploaded:",
+                data.secure_url
+            );
+
+            await addDoc(
+                collection(db, "certificates"),
+                {
+                    name: certificateName,
+                    organization: certificateOrganization,
+                    fileUrl: data.secure_url,
+                    createdAt: new Date()
+                }
+            );
+
+            alert("Certificate uploaded successfully! 🏆");
+
+            certificateForm.reset();
+
+        } catch (error) {
+
+            console.error("Certificate upload error:", error);
+
+            alert("Certificate upload failed. Check console.");
 
         }
 

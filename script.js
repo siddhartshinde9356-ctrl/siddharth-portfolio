@@ -2,9 +2,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebas
 import {
     getFirestore,
     doc,
-    getDoc
+    getDoc,
+    collection,
+    getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 const firebaseConfig = {
     apiKey: "AIzaSyB-CzRPp1VCjTOvnuBN1u0k2WR1t5tBdzs",
     authDomain: "siddharth-portfolio-7acd1.firebaseapp.com",
@@ -126,3 +127,76 @@ animationStyle.innerHTML = `
 document.head.appendChild(
     animationStyle
 );
+// ================= CERTIFICATES =================
+
+async function loadCertificates() {
+
+    try {
+
+        const certificateGrid =
+            document.getElementById("certificateGrid");
+
+        if (!certificateGrid) return;
+
+        const certificatesSnapshot =
+            await getDocs(collection(db, "certificates"));
+
+        certificateGrid.innerHTML = "";
+
+        let number = 1;
+
+        certificatesSnapshot.forEach((certificateDoc) => {
+
+            const certificate =
+                certificateDoc.data();
+
+            const card =
+                document.createElement("article");
+
+            card.className = "certificate-card";
+
+            card.innerHTML = `
+                <span class="certificate-number">
+                    ${String(number).padStart(2, "0")}
+                </span>
+
+                <p>
+                    CERTIFICATE
+                </p>
+
+                <h3>
+                    ${certificate.name}
+                </h3>
+
+                <span class="certificate-org">
+                    ${certificate.organization}
+                </span>
+
+                <a
+                    href="${certificate.fileUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    View Certificate ↗
+
+                </a>
+            `;
+
+            certificateGrid.appendChild(card);
+
+            number++;
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Certificate loading error:",
+            error
+        );
+
+    }
+
+}
+
+loadCertificates();
